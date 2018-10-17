@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图标切换</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box li img{
+            width: 80px;
+            height: 50px;
+        }
+
+        #box{
+            border: 1px solid #cccccc;
+            width: 400px;
+            height: 50px;
+
+            padding-top: 250px;
+            margin: 100px auto;
+
+            background: url("images/0.jpg");
+            background-size: 400px;
+        }
+
+        #box ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <ul>
+        <li><img src="images/0.jpg"></li>
+        <li><img src="images/1.jpg"></li>
+        <li><img src="images/2.jpg"></li>
+        <li><img src="images/3.jpg"></li>
+        <li><img src="images/4.jpg"></li>
+    </ul>
+</div>
+
+<script>
+    window.onload = function () {
+        var box = document.getElementById("box");
+        var allLi = box.getElementsByTagName("li");
+
+        for(var i = 0; i < allLi.length; i++){
+            allLi[i].id = i;
+            allLi[i].onclick = function () {
+                var img = allLi[this.id].getElementsByTagName("img")[0].src;
+                box.style.background = 'url(' + img + ')';
+                box.style.backgroundSize = '400px';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

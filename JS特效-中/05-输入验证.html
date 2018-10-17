@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分数录入</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box{
+            margin: 30px 100px;
+        }
+
+        #context{
+            outline: none;
+            border: 1px solid #cccccc;
+        }
+
+        span{
+            font-size: 11px;
+            color: #cccccc;
+        }
+
+        .right{
+            color: aquamarine;
+        }
+
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <label id="lab" style="font-size: 11px">输入成绩：</label>
+    <input id="context" type="text" placeholder="请输入分数">
+    <span id="msg">请输入0-100的分数</span>
+</div>
+
+<script>
+    window.onload = function () {
+        var context = document.getElementById("context");
+        var  msg = document.getElementById("msg");
+
+        context.onfocus = function () {
+            context.style.border = '1px solid blue';
+            context.value='';
+
+            msg.innerText = "请输入0-100的分数";
+            msg.className = '';
+        };
+        
+        context.onblur = function () {
+            var value = context.value;
+            var num = parseInt(value);
+            if(isNaN(num)){
+                msg.innerText = "输入的不是一个数字";
+                msg.className = "error";
+                context.style.border = '1px solid red';
+            }else if(num < 0 || num > 100){
+                msg.innerText = "输入的数字不在0-100之间";
+                msg.className = "error";
+                context.style.border = '1px solid red';
+            }else{
+                msg.innerText = "输入的分数正确";
+                msg.className = "right";
+                context.style.border = '1px solid aquamarine';
+            }
+        }
+    }
+</script>
+</body>
+</html>
